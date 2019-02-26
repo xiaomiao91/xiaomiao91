@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-26T03:19:26.000Z</updated>
+  <updated>2019-01-30T11:36:42.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,33 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>非监督模型评估</title>
-    <link href="http://yoursite.com/2019/02/26/%E9%9D%9E%E7%9B%91%E7%9D%A3%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/"/>
-    <id>http://yoursite.com/2019/02/26/非监督模型评估/</id>
-    <published>2019-02-26T03:18:55.000Z</published>
-    <updated>2019-02-26T03:19:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p># </p><ul><li><p>lda评估：</p><ul><li><p>intrinsic：不借助其他手段，混乱度</p><ul><li>混乱度：(perplexity)  ：语言模型的评估标准，直观理解是预测下一个词时有多少种选择，和熵的意义相似，越小代表信息量越小，越不混乱，越好。</li><li>为什么在语言模型中有效：给定测试数据都是合法的，相当于正样本，比较几个模型，计算出来的混乱度越小，越接近正样本，越好</li><li>计算公式<br><img src="DBC98653-043B-44E8-9DB7-B663E872DEE4.png" alt=""></li><li>Lda作者在选定topic数时，使用了混乱度，在评估不同模型时不太适合。另外这种方案与人工评估有出入。</li><li>给定文档中，根据doc-topic和topic-word矩阵计算各词的出现概率</li><li>参考：<ul><li><a href="http://qpleple.com/perplexity-to-evaluate-topic-models/" target="_blank" rel="external">Perplexity To Evaluate Topic Models</a></li><li><a href="https://www.cnblogs.com/nlp-yekai/p/3816532.html" target="_blank" rel="external">用python计算lda语言模型的困惑度并作图 - 叶落花开 - 博客园</a></li><li><a href="http://blog.csdn.net/dongweionly/article/details/50286961" target="_blank" rel="external">LDA perplexity计算 - CSDN博客</a></li></ul></li></ul></li><li><p>可解释性</p><ul><li>词的主题向量，降维，聚类、可视化，词的语义表示分布</li><li>主题的词分布</li></ul></li><li>在下游任务中评估<ul><li>句子语义表示：分词、预处理、预测</li><li>语义匹配：</li><li>词的表示：训练完成后即可拿到，字典</li></ul></li></ul></li></ul><p>#nlp/lda#</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;# &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;lda评估：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;intrinsic：不借助其他手段，混乱度&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;混乱度：(perplexity)  ：语言模型的评估标准，直观理解是预测下一个词时有多少种选择，和熵的意义相似，越小代表
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>embedding在搜索和推荐中的应用(airbnb)</title>
@@ -132,6 +105,33 @@
       
         &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://cs231n.github.io/convolutional-networks/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://cs231n.github.io/convolutional-netw
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>非监督模型评估</title>
+    <link href="http://yoursite.com/2018/03/26/%E9%9D%9E%E7%9B%91%E7%9D%A3%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/"/>
+    <id>http://yoursite.com/2018/03/26/非监督模型评估/</id>
+    <published>2018-03-26T03:18:55.000Z</published>
+    <updated>2019-02-26T03:20:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p># </p><ul><li><p>lda评估：</p><ul><li><p>intrinsic：不借助其他手段，混乱度</p><ul><li>混乱度：(perplexity)  ：语言模型的评估标准，直观理解是预测下一个词时有多少种选择，和熵的意义相似，越小代表信息量越小，越不混乱，越好。</li><li>为什么在语言模型中有效：给定测试数据都是合法的，相当于正样本，比较几个模型，计算出来的混乱度越小，越接近正样本，越好</li><li>计算公式<br><img src="DBC98653-043B-44E8-9DB7-B663E872DEE4.png" alt=""></li><li>Lda作者在选定topic数时，使用了混乱度，在评估不同模型时不太适合。另外这种方案与人工评估有出入。</li><li>给定文档中，根据doc-topic和topic-word矩阵计算各词的出现概率</li><li>参考：<ul><li><a href="http://qpleple.com/perplexity-to-evaluate-topic-models/" target="_blank" rel="external">Perplexity To Evaluate Topic Models</a></li><li><a href="https://www.cnblogs.com/nlp-yekai/p/3816532.html" target="_blank" rel="external">用python计算lda语言模型的困惑度并作图 - 叶落花开 - 博客园</a></li><li><a href="http://blog.csdn.net/dongweionly/article/details/50286961" target="_blank" rel="external">LDA perplexity计算 - CSDN博客</a></li></ul></li></ul></li><li><p>可解释性</p><ul><li>词的主题向量，降维，聚类、可视化，词的语义表示分布</li><li>主题的词分布</li></ul></li><li>在下游任务中评估<ul><li>句子语义表示：分词、预处理、预测</li><li>语义匹配：</li><li>词的表示：训练完成后即可拿到，字典</li></ul></li></ul></li></ul><p>#nlp/lda#</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;# &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;lda评估：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;intrinsic：不借助其他手段，混乱度&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;混乱度：(perplexity)  ：语言模型的评估标准，直观理解是预测下一个词时有多少种选择，和熵的意义相似，越小代表
       
     
     </summary>
