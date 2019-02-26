@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> CNN基础 · Hexo</title><meta name="description" content="CNN基础 - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://weibo.com/u/2266458253" target="_blank" class="nav-list-link">WEIBO</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">CNN基础</h1><div class="post-info">Aug 26, 2018</div><div class="post-content"><ul>
+<li><a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">http://cs231n.github.io/convolutional-networks/</a></li>
+</ul>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>与常规NN比：减少的了参数的规模，filter是和特定、局部的输入连接<h4 id="主要构成"><a href="#主要构成" class="headerlink" title="主要构成"></a>主要构成</h4></li>
+<li>input layer (W1 <em> H1 </em> D1)</li>
+<li>conv layer<ul>
+<li>主要参数<ul>
+<li>K: depth(卷积核的数量，决定输出的层数或者深度) </li>
+<li>S: stride</li>
+<li>P: zero-padding:长宽对齐、卷积时补齐</li>
+</ul>
+</li>
+<li>卷积核权重共享(Parameter Sharing)<ul>
+<li>一次卷积中共享核的参数，是基于：当特征在某一个区域重要时，它在其他地方也会比较重要；少数反例：中间构图的图片</li>
+<li>可以极大地降低参数数量</li>
+</ul>
+</li>
+<li>输出规模：<ul>
+<li>W2=(W1-F+2P)/S+1  </li>
+<li>H2=(H1-F+2P)/S+1              </li>
+<li>D2=K :卷积核的个数</li>
+</ul>
+</li>
+<li>矩阵乘法的实现：im2col 矩阵展开</li>
+<li>1<code>*</code>1 卷积核也是是有效的，因为它暗含一个维度，如图片中是1<em>1</em>3  </li>
+<li>Dilated convolutions：w[0]<em>x[0] + w[1]</em>x[2] + w[2]*x[4] 可以扩大卷积的视野，在图像分割中使用较多</li>
+</ul>
+</li>
+<li>relu：无参数 neg–&gt;0</li>
+<li>pool：无训练参数<ul>
+<li>降低参数规模、防止过拟合</li>
+<li>两种常见的pooling layer：<ul>
+<li>F=2 S=2</li>
+<li>F=3 S=2</li>
+</ul>
+</li>
+<li>干掉pooling层<ul>
+<li>可以通过变大conv层的步幅来降低参数数量</li>
+<li>生成模型如VAEs何GANs去掉pooling层效果不过，可能是趋势</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>fc层：FC层可以和卷积层相互转换<h4 id="卷积网络架构"><a href="#卷积网络架构" class="headerlink" title="卷积网络架构"></a>卷积网络架构</h4><h5 id="常见架构模式"><a href="#常见架构模式" class="headerlink" title="常见架构模式"></a>常见架构模式</h5><ul>
+<li>INPUT -&gt; [[CONV -&gt; RELU]<em>N -&gt; POOL?]</em>M -&gt; [FC -&gt; RELU]*K -&gt; FC<ul>
+<li>多个小filter VS 一个大filter</li>
+<li>前者由于中间有多个非线性激活函数，所以表达能力更强；且参数数量更小</li>
+<li>实际中的劣势是，训练时需要保存的层数多，占用空间大</li>
+<li>实践：不逞英雄，在现有的ImageNet上finetune(微调)<h5 id="各层参数量级大小选择"><a href="#各层参数量级大小选择" class="headerlink" title="各层参数量级大小选择"></a>各层参数量级大小选择</h5></li>
+<li>输入层：一般为2的次幂：32、64、224、384、512</li>
+<li>卷积层：小filter</li>
+<li>池化层：field：2*2 stride=2</li>
+<li>stride=1 让conv专注提取特征，pooling层专注采样</li>
+<li>padding的意义在于保持输出的尺寸一致，另外也能防止边缘信息不被“冲洗”，所以也能提升性能</li>
+<li>内存限制妥协：第一层使用大卷积核，可以降低卷积层的输出量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4></div></article></div></main><footer><div class="paginator"><a href="/2019/01/20/embedding在电商推荐中的应用-hema/" class="prev">PREV</a><a href="/2018/02/26/统计分布总结/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2019 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

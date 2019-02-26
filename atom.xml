@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-30T11:36:42.000Z</updated>
+  <updated>2019-02-26T03:19:26.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>非监督模型评估</title>
+    <link href="http://yoursite.com/2019/02/26/%E9%9D%9E%E7%9B%91%E7%9D%A3%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/"/>
+    <id>http://yoursite.com/2019/02/26/非监督模型评估/</id>
+    <published>2019-02-26T03:18:55.000Z</published>
+    <updated>2019-02-26T03:19:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p># </p><ul><li><p>lda评估：</p><ul><li><p>intrinsic：不借助其他手段，混乱度</p><ul><li>混乱度：(perplexity)  ：语言模型的评估标准，直观理解是预测下一个词时有多少种选择，和熵的意义相似，越小代表信息量越小，越不混乱，越好。</li><li>为什么在语言模型中有效：给定测试数据都是合法的，相当于正样本，比较几个模型，计算出来的混乱度越小，越接近正样本，越好</li><li>计算公式<br><img src="DBC98653-043B-44E8-9DB7-B663E872DEE4.png" alt=""></li><li>Lda作者在选定topic数时，使用了混乱度，在评估不同模型时不太适合。另外这种方案与人工评估有出入。</li><li>给定文档中，根据doc-topic和topic-word矩阵计算各词的出现概率</li><li>参考：<ul><li><a href="http://qpleple.com/perplexity-to-evaluate-topic-models/" target="_blank" rel="external">Perplexity To Evaluate Topic Models</a></li><li><a href="https://www.cnblogs.com/nlp-yekai/p/3816532.html" target="_blank" rel="external">用python计算lda语言模型的困惑度并作图 - 叶落花开 - 博客园</a></li><li><a href="http://blog.csdn.net/dongweionly/article/details/50286961" target="_blank" rel="external">LDA perplexity计算 - CSDN博客</a></li></ul></li></ul></li><li><p>可解释性</p><ul><li>词的主题向量，降维，聚类、可视化，词的语义表示分布</li><li>主题的词分布</li></ul></li><li>在下游任务中评估<ul><li>句子语义表示：分词、预处理、预测</li><li>语义匹配：</li><li>词的表示：训练完成后即可拿到，字典</li></ul></li></ul></li></ul><p>#nlp/lda#</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;# &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;lda评估：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;intrinsic：不借助其他手段，混乱度&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;混乱度：(perplexity)  ：语言模型的评估标准，直观理解是预测下一个词时有多少种选择，和熵的意义相似，越小代表
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>embedding在搜索和推荐中的应用(airbnb)</title>
@@ -83,6 +110,51 @@
         &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;高维度带来的稀疏问题(sparsity problems due to the high dimension)&lt;/li&gt;
 &lt;li
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CNN基础</title>
+    <link href="http://yoursite.com/2018/08/26/CNN%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2018/08/26/CNN基础/</id>
+    <published>2018-08-26T03:14:11.000Z</published>
+    <updated>2019-02-26T03:14:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">http://cs231n.github.io/convolutional-networks/</a></li></ul><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul><li>与常规NN比：减少的了参数的规模，filter是和特定、局部的输入连接<h4 id="主要构成"><a href="#主要构成" class="headerlink" title="主要构成"></a>主要构成</h4></li><li>input layer (W1 <em> H1 </em> D1)</li><li>conv layer<ul><li>主要参数<ul><li>K: depth(卷积核的数量，决定输出的层数或者深度) </li><li>S: stride</li><li>P: zero-padding:长宽对齐、卷积时补齐</li></ul></li><li>卷积核权重共享(Parameter Sharing)<ul><li>一次卷积中共享核的参数，是基于：当特征在某一个区域重要时，它在其他地方也会比较重要；少数反例：中间构图的图片</li><li>可以极大地降低参数数量</li></ul></li><li>输出规模：<ul><li>W2=(W1-F+2P)/S+1  </li><li>H2=(H1-F+2P)/S+1              </li><li>D2=K :卷积核的个数</li></ul></li><li>矩阵乘法的实现：im2col 矩阵展开</li><li>1<code>*</code>1 卷积核也是是有效的，因为它暗含一个维度，如图片中是1<em>1</em>3  </li><li>Dilated convolutions：w[0]<em>x[0] + w[1]</em>x[2] + w[2]*x[4] 可以扩大卷积的视野，在图像分割中使用较多</li></ul></li><li>relu：无参数 neg–&gt;0</li><li>pool：无训练参数<ul><li>降低参数规模、防止过拟合</li><li>两种常见的pooling layer：<ul><li>F=2 S=2</li><li>F=3 S=2</li></ul></li><li>干掉pooling层<ul><li>可以通过变大conv层的步幅来降低参数数量</li><li>生成模型如VAEs何GANs去掉pooling层效果不过，可能是趋势</li></ul></li></ul></li><li>fc层：FC层可以和卷积层相互转换<h4 id="卷积网络架构"><a href="#卷积网络架构" class="headerlink" title="卷积网络架构"></a>卷积网络架构</h4><h5 id="常见架构模式"><a href="#常见架构模式" class="headerlink" title="常见架构模式"></a>常见架构模式</h5><ul><li>INPUT -&gt; [[CONV -&gt; RELU]<em>N -&gt; POOL?]</em>M -&gt; [FC -&gt; RELU]*K -&gt; FC<ul><li>多个小filter VS 一个大filter</li><li>前者由于中间有多个非线性激活函数，所以表达能力更强；且参数数量更小</li><li>实际中的劣势是，训练时需要保存的层数多，占用空间大</li><li>实践：不逞英雄，在现有的ImageNet上finetune(微调)<h5 id="各层参数量级大小选择"><a href="#各层参数量级大小选择" class="headerlink" title="各层参数量级大小选择"></a>各层参数量级大小选择</h5></li><li>输入层：一般为2的次幂：32、64、224、384、512</li><li>卷积层：小filter</li><li>池化层：field：2*2 stride=2</li><li>stride=1 让conv专注提取特征，pooling层专注采样</li><li>padding的意义在于保持输出的尺寸一致，另外也能防止边缘信息不被“冲洗”，所以也能提升性能</li><li>内存限制妥协：第一层使用大卷积核，可以降低卷积层的输出量</li></ul></li></ul></li></ul><h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://cs231n.github.io/convolutional-networks/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://cs231n.github.io/convolutional-netw
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>统计分布总结</title>
+    <link href="http://yoursite.com/2018/02/26/%E7%BB%9F%E8%AE%A1%E5%88%86%E5%B8%83%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2018/02/26/统计分布总结/</id>
+    <published>2018-02-26T03:16:19.000Z</published>
+    <updated>2019-02-26T03:16:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="分布"><a href="#分布" class="headerlink" title="分布"></a>分布</h1><p>#statistics/distribution#</p><ul><li>伯努利试验是最基本的过程：只有<strong>两种</strong>可能的<strong>单次</strong>随机试验<ol><li>两种可能，即0和1，所以其分布又叫两点分布或0-1分布</li><li>单次，只能进行一次，次数多了就构成二项分布，这是后话。</li></ol></li><li>伯努利分布<ul><li>伯努利分布是成功和失败的这两个点的分布，是离散的</li></ul></li><li><p>二项分布</p><ul><li>n重伯努利试验后，成功的次数n的分布</li><li>与伯努利分布的主要不同<pre><code>1. 试验的次数变多了，1次———&gt;多次2. 自变量x的取值不一样了，成功／失败的概率————&gt;成功(正面)次数k的概率  </code></pre></li><li>自变量：一维离散，参数：实验次数和一个定值概率<img src="&amp;&amp;&amp;SFLOCALFILEPATH&amp;&amp;&amp;D4D2591A-FD8B-4DFB-9B92-4A66EB110D5C.png" alt=""></li></ul></li><li><p>多项分布</p><ul><li>伯努利事件中的两种可能变成多种可能，升级的二项分布</li><li>与二项分布的主要不同：硬币变成骰子，自变量x取值增加维度：比如抛6次骰子，问6朝上3次，1朝上2次，2朝上1次的概率就服从多项分布，如果问6朝上3次，其他朝上3次的概率就成了二项分布</li><li>自变量是2维，比如投骰子，k=6，自变量为(1,1,0,0,8,3)就表示抛的结果是1次1，1次2，8次5，3次6的概率</li><li>参数是n和p1，p2……Pk，抛骰子的实验来说的话，n表示实验做了n次，p表示抛出每个面的概率，所有6个p相加为1</li><li>应变量就是出现自变量这种结果的概率</li><li>概率密度函数的两种写法，最后提到的共轭分布是狄利克雷分布<img src="&amp;&amp;&amp;SFLOCALFILEPATH&amp;&amp;&amp;7A2601D2-10CE-41B6-A2EA-0316B928A314.png" alt=""></li><li></li><li>与其他分布的关系：<ul><li>n=1，k=2:伯努利分布</li><li>n&gt;1，k=2:二项分布</li><li>n=1 广义伯努利分布或分类分布</li></ul></li></ul></li><li><p>beta分布：</p><ul><li>分布上的分布，基于先验的分布，根据目前的样本调整得到的分布。</li><li>beta分布的实验和二项分布一样，都是n多次二值实验，但用途有很大不同，二项分布是已经了解（或假定已经了解）事件发生的概率，去求多次实验时结果的分布，而beta分布最见的用途是：我们不了解事件发生的概率，但又一些合理的猜测（<strong>先验</strong>），可以将其加入到最终的分布中（贝叶斯学派）</li><li>beta分布是在二项分布上的分布，之前的二项分布和多项式分布中，我们假定随机试验的概率θ是已知的常数，比如，硬币正面的概率就是0.5，如果不均匀那也是一个不是0.5的定值，而骰子抛出2的概率我们也假定就是1/6，但是在beta分布中，θ是个分布(它由两个参数决定)</li><li>考虑先验有意义，举例：<a href="https://www.zhihu.com/question/30269898" target="_blank" rel="external">https://www.zhihu.com/question/30269898</a><ul><li>我们想预测一个棒球运动员的棒球击中率，可以使用二项分布来做，比如让他打几个球，算一下他的击中率，然后就可以预测他能击中几个球的概率了。用二项分布计算的重点是多个球时的击中概率，这个没错，问题是我们让运动员打了几个球，用这几个球的结果计算出来的概率可信度有多大呢。不大的原因是比如一般运动员的击中概率是0.27，但实验中打了5个球，心情好，全中，你敢说这个运动员的击中率是100%吗，全不中，敢说是0%吗，不敢啊，是因为不符合常理的0.27（先验），用上这个0.27这个数据得出来的数据就比较可信了</li></ul></li><li>概率密度函数  <ul><li>x是一个概率，y即f(x)是概率是x的概率，参数代表先验信息<img src="&amp;&amp;&amp;SFLOCALFILEPATH&amp;&amp;&amp;F0C4ADAC-E980-4ED1-9BBE-8AADAFC32CD4.png.png" alt=""></li></ul></li></ul></li><li><p>Dirichlet Distribution</p><ul><li>理解可以比对beta分布，只要将二值结果变为多值就可以了   </li><li><p>概率密度函数</p><ul><li>x1……xK为自变量，物理意义是每个类别的概率，和为1，是个分布</li><li>alpha为参数，包含先验信息<img src="&amp;&amp;&amp;SFLOCALFILEPATH&amp;&amp;&amp;0E2E561D-2ADB-427C-BFDE-79A1B209B8E0.png" alt=""></li></ul></li><li><p>可视化理解参数alpha变化：<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution#/media/File:LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif" target="_blank" rel="external">Dirichlet distribution - Wikipedia</a></p></li></ul></li><li>狄利克雷过程<br>分布的分布？隐含的变量</li></ul><ul><li>最大似然函数和最大后验估计<ul><li>最大似然函数是：给定样本带入给定的似然函数中，参数作为自变量，函数最大时对应的值，可以理解为：最拟合目前的样本的参数，是个值</li><li>最大后验分布<ul><li>求那个参数时，考虑先验</li><li>这个参数，不是一个值，而是服从一定的分布，往往是beta分布或dirichlet分布，因为是分布，预测时，要把分布中所有可能的参数都算一下，求和，连续的求积分</li><li>同样，也是求最大，后验分布最大时的那个值</li></ul></li></ul></li></ul><ul><li>参考<ul><li><a href="https://en.wikipedia.org/wiki/Beta_distribution" target="_blank" rel="external">Beta distribution - Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Multinomial_distribution" target="_blank" rel="external">Multinomial distribution - Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Dirichlet_distribution" target="_blank" rel="external">Dirichlet distribution - Wikipedia</a></li><li><a href="https://www.zhihu.com/question/30269898" target="_blank" rel="external">https://www.zhihu.com/question/30269898</a></li><li></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;分布&quot;&gt;&lt;a href=&quot;#分布&quot; class=&quot;headerlink&quot; title=&quot;分布&quot;&gt;&lt;/a&gt;分布&lt;/h1&gt;&lt;p&gt;#statistics/distribution#&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;伯努利试验是最基本的过程：只有&lt;strong&gt;两种&lt;/stro
       
     
     </summary>
