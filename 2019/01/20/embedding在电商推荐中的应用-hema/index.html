@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> embedding在电商推荐中的应用(hema) · Hexo</title><meta name="description" content="embedding在电商推荐中的应用(hema) - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://weibo.com/u/2266458253" target="_blank" class="nav-list-link">WEIBO</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">embedding在电商推荐中的应用(hema)</h1><div class="post-info">Jan 20, 2019</div><div class="post-content"><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>高维度带来的稀疏问题(sparsity problems due to the high dimension)</li>
+<li>不能反映ID间的关系(cannot reflect the relationships among IDs, either homogeneous or heterogeneous ones)</li>
+</ul>
+<h2 id="相关背景"><a href="#相关背景" class="headerlink" title="相关背景"></a>相关背景</h2><ul>
+<li><p>hema app</p>
+<p>  <img src="https://note.youdao.com/yws/public/resource/f0fd42fa2d71dca057e320baf9933597/xmlnote/WEBRESOURCE84cecc3f356263c90a167951ffa56cbc/22292" width="70%" height="70%"></p>
+</li>
+<li><p>各种id介绍</p>
+<p>  <img src="https://note.youdao.com/yws/public/resource/f0fd42fa2d71dca057e320baf9933597/xmlnote/WEBRESOURCE868105f2419809155404e9764def13ad/22290" width="50%" height="50%">    </p>
+</li>
+</ul>
+<h2 id="模型介绍"><a href="#模型介绍" class="headerlink" title="模型介绍"></a>模型介绍</h2><h3 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h3><pre><code>e：id要训练的向量
+C：滑动的上下文窗口
+N：用户数或语料的总量
+D：item的总量；类似于词典大小
+S：负样本的抽样集合
+IDs：一个商品的各种属性id集合
+M：从item向量映射到某一种属性向量的转移矩阵
+K：item所有属性的长度
+k：item的某一种属性，第一个属性是item自身的向量
+α、β：目标函数的权重因子
+V：一个属性下有多少个不同的商品
+w：V分之一，该商品占某种属性的比例
+
+item：具体商品
+user：用户
+attribute：商品的属性
+product：物品，如iPhoneX
+brand：品牌
+store：商店
+cate：分类
+</code></pre><h3 id="item-id的模型"><a href="#item-id的模型" class="headerlink" title="item_id的模型"></a>item_id的模型</h3><ul>
+<li><p>skip-grim框架</p>
+<p>  <img src="https://note.youdao.com/yws/public/resource/f0fd42fa2d71dca057e320baf9933597/xmlnote/WEBRESOURCE8de80fae84f92a021a09ab3ce3faddb1/22293" width="70%" height="70%"> </p>
+</li>
+<li><p>skip-gram model损失函数</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">J=\frac&#123;1&#125;&#123;N&#125;\sum_&#123;n=1&#125;^N\sum_&#123;-C \leq j \leq C&#125;^&#123;1\leq n+j \leq N&apos;,j\neq0&#125;\log p(item_&#123;n+j&#125;|item_n))</div></pre></td></tr></table></figure>
+</li>
+<li><p>p的计算</p>
+<ul>
+<li><p>p通过softmax来获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p(item_&#123;j&#125;|item_i)=\frac&#123;exp(e_j^&#123;&apos;T&#125;e_i)&#125;&#123;\sum_&#123;d=1&#125;^Dexp(e_d^&#123;&apos;T&#125;e_i)&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Mikolov et al. simplify NCE by <strong>negative-sampling</strong> [24] and replace <strong>softmax function</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p(item_&#123;j&#125;|item_i)=\sigma(e_j^&#123;&apos;T&#125;e_i) \Pi_&#123;s=1&#125;^S\sigma(-e_s^&#123;&apos;T&#125;e_i)</div></pre></td></tr></table></figure>
+</li>
+<li><p>抽样方法的改进：negative samples are drawn from the <a href="https://zh.wikipedia.org/wiki/%E9%BD%8A%E5%A4%AB%E5%AE%9A%E5%BE%8B" target="_blank" rel="external">zipfian distribution</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="属性id的模型"><a href="#属性id的模型" class="headerlink" title="属性id的模型"></a>属性id的模型</h3><ul>
+<li><p>loss 函数</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">J=\frac&#123;1&#125;&#123;N&#125;(\sum_&#123;-C \le j \le C&#125;^&#123;1\le n+j \le N,j\ne 0&#125;logp(IDs(item_&#123;n+j&#125;)|IDs(item_n))+ \alpha logp(item_n|IDs(item_n))-\beta\sum_&#123;k=1&#125;^K||M_k||_2)</div></pre></td></tr></table></figure>
+</li>
+<li><p>第一部分:item的同现也意味着其属性id的同现</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p(IDs(item_&#123;j&#125;)|IDs(item_i))=\sigma(\Sigma_&#123;k=1&#125;^K(w_&#123;jk&#125;e_&#123;jk&#125;^&#123;&apos;&#125;)^T(w_&#123;ik&#125;e_&#123;ik&#125;) )\Pi_&#123;s=1&#125;^S\sigma(-\Sigma_&#123;k=1&#125;^K(w_&#123;sk&#125;e_&#123;sk&#125;^&#123;&apos;&#125;)^T(w_&#123;ik&#125;e_&#123;ik&#125;))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>第二部分：对item_id和属性id的关系建模</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">p(item_n|IDs(item_n))=\sigma(\sum_&#123;k=2&#125;^Kw_&#123;ik&#125;e_&#123;i1&#125;^TM_ke_&#123;ik&#125;)</div><div class="line"></div><div class="line">    w_&#123;ik&#125;=\frac&#123;1&#125;&#123;V_&#123;ik&#125;&#125;</div><div class="line"></div><div class="line">    V_&#123;ik&#125;=\sum_&#123;j=1&#125;^DI(id_k(item_i)=id_k(item_j)) </div><div class="line"></div><div class="line">    I(x)=\begin&#123;cases&#125;0, x \ is \ False \\\\1, x \ is \ True \end&#123;cases&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>第三部分：正则项</p>
+</li>
+</ul>
+<h3 id="用户id的学习方法"><a href="#用户id的学习方法" class="headerlink" title="用户id的学习方法"></a>用户id的学习方法</h3><ul>
+<li style="list-style: none"><input type="checkbox" checked> Average:updated frequently</li>
+<li style="list-style: none"><input type="checkbox"> RNN</li>
+</ul>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="item相似性推荐"><a href="#item相似性推荐" class="headerlink" title="item相似性推荐:"></a>item相似性推荐:</h3><ul>
+<li>流程：user_id -&gt; items seed -&gt; sim items -&gt;Filtering -&gt; Ranking</li>
+</ul>
+<h3 id="item冷启动表示"><a href="#item冷启动表示" class="headerlink" title="item冷启动表示"></a>item冷启动表示</h3><ul>
+<li>attribute ids–&gt;item id</li>
+<li>given a new item, its corresponding product is likely sold elsewhere and the corresponding store has already sold other items.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e_&#123;i1&#125; \approx \sum_&#123;k=2&#125;^Kw_&#123;ik&#125;^Te_&#123;ik&#125;^TM_k^T</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="平台之间用户迁移学习"><a href="#平台之间用户迁移学习" class="headerlink" title="平台之间用户迁移学习"></a>平台之间用户迁移学习</h3><p><img src="https://note.youdao.com/yws/public/resource/f0fd42fa2d71dca057e320baf9933597/xmlnote/WEBRESOURCE1746e21a9e8728895a230f6cc7d8436a/22288" width="70%" height="70%"> </p>
+<ul>
+<li>步骤<ul>
+<li>根据item聚合计算source platform 的user_id</li>
+<li>取交叉用户聚类</li>
+<li>每一类中提取target domain的top item<ul>
+<li>new coming user–&gt; items</li>
+</ul>
+</li>
+<li>两种aggregating manners<ul>
+<li>naive average</li>
+<li>weighted average:含有目标平台中的item的才算<h3 id="学习其他任务"><a href="#学习其他任务" class="headerlink" title="学习其他任务"></a>学习其他任务</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>store_id：sales forecast</li>
+</ul>
+<h2 id="借鉴与计划"><a href="#借鉴与计划" class="headerlink" title="借鉴与计划"></a>借鉴与计划</h2><ol>
+<li>ad_id类比word，计算ad_id的embedding，得到user_id的广告特征</li>
+<li>doc_id类比word，计算doc_id的embedding，得到user_id的内容特征</li>
+<li>starSpace（关键在<strong>构造a,b+,b-</strong>;a和b的关系：<strong>标签、共现、因果、可跨域</strong>）</li>
+</ol>
+<pre><code>对象a | 正例b+ |负例b- |备注
+---|---|---|---
+ad_id |被同一用户点击过的ad_id|随机|共现
+doc_id | 被同一用户点击过的doc_id|随机|共现
+创意图片提特征| 行业作为标签 |随机|标签
+...|...|...|...
+user_id | doc_id |未点击过的doc|标签
+图片特征 | 同现的图片特征某一特征 |随机|属性共现
+</code></pre><ol>
+<li>embedding在ctr模型和cvr模型中的应用</li>
+<li>广告创意图片特征的提取（计划中）</li>
+</ol>
+</div></article></div></main><footer><div class="paginator"><a href="/2019/01/30/embedding在搜索和推荐中的应用-airbnb/" class="prev">PREV</a></div><div class="copyright"><p>© 2015 - 2019 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
