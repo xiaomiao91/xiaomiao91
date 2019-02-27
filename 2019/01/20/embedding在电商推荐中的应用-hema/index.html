@@ -3,11 +3,9 @@
 <li>不能反映ID间的关系(cannot reflect the relationships among IDs, either homogeneous or heterogeneous ones)</li>
 </ul>
 <h2 id="相关背景"><a href="#相关背景" class="headerlink" title="相关背景"></a>相关背景</h2><ul>
-<li><p>hema app</p>
-<p>  <img src="https://note.youdao.com/yws/public/resource/f0fd42fa2d71dca057e320baf9933597/xmlnote/WEBRESOURCE84cecc3f356263c90a167951ffa56cbc/22292" width="70%" height="70%"></p>
-  <img src="/2019/01/20/embedding在电商推荐中的应用-hema/embedding_hema.jpeg" alt="hema app" title="hema app"></li>
+<li>hema app  <img src="/2019/01/20/embedding在电商推荐中的应用-hema/embedding_hema.jpeg" alt="hema app" title="hema app"></li>
 <li><p>各种id介绍</p>
-<p>  <img src="https://note.youdao.com/yws/public/resource/f0fd42fa2d71dca057e320baf9933597/xmlnote/WEBRESOURCE868105f2419809155404e9764def13ad/22290" width="50%" height="50%">    </p>
+  <img src="/2019/01/20/embedding在电商推荐中的应用-hema/embedding_hema_transfer.jpeg" alt="id relation" title="id relation">
 </li>
 </ul>
 <h2 id="模型介绍"><a href="#模型介绍" class="headerlink" title="模型介绍"></a>模型介绍</h2><h3 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h3><pre><code>e：id要训练的向量
@@ -31,9 +29,11 @@ brand：品牌
 store：商店
 cate：分类
 </code></pre><h3 id="item-id的模型"><a href="#item-id的模型" class="headerlink" title="item_id的模型"></a>item_id的模型</h3><ul>
-<li><p>skip-grim框架</p>
-<p>  <img src="https://note.youdao.com/yws/public/resource/f0fd42fa2d71dca057e320baf9933597/xmlnote/WEBRESOURCE8de80fae84f92a021a09ab3ce3faddb1/22293" width="70%" height="70%"> </p>
+<li>skip-grim框架</li>
+<li>  <img src="/2019/01/20/embedding在电商推荐中的应用-hema/embedding_skipgram.jpeg" alt="embedding sequence" title="embedding sequence">
 </li>
+</ul>
+<ul>
 <li><p>skip-gram model损失函数</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">J=\frac&#123;1&#125;&#123;N&#125;\sum_&#123;n=1&#125;^N\sum_&#123;-C \leq j \leq C&#125;^&#123;1\leq n+j \leq N&apos;,j\neq0&#125;\log p(item_&#123;n+j&#125;|item_n))</div></pre></td></tr></table></figure>
 </li>
@@ -77,7 +77,7 @@ cate：分类
 <li>given a new item, its corresponding product is likely sold elsewhere and the corresponding store has already sold other items.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e_&#123;i1&#125; \approx \sum_&#123;k=2&#125;^Kw_&#123;ik&#125;^Te_&#123;ik&#125;^TM_k^T</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="平台之间用户迁移学习"><a href="#平台之间用户迁移学习" class="headerlink" title="平台之间用户迁移学习"></a>平台之间用户迁移学习</h3><p><img src="https://note.youdao.com/yws/public/resource/f0fd42fa2d71dca057e320baf9933597/xmlnote/WEBRESOURCE1746e21a9e8728895a230f6cc7d8436a/22288" width="70%" height="70%"> </p>
+<h3 id="平台之间用户迁移学习"><a href="#平台之间用户迁移学习" class="headerlink" title="平台之间用户迁移学习"></a>平台之间用户迁移学习</h3><img src="/2019/01/20/embedding在电商推荐中的应用-hema/embedding_hema_transfer.jpeg" alt="embedding transfer" title="embedding transfer">
 <ul>
 <li>步骤<ul>
 <li>根据item聚合计算source platform 的user_id</li>

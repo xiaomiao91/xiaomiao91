@@ -11,8 +11,12 @@
 <li>Type embedding中 “房东拒绝”作为显式的负样本—&gt;减少将来失败的推荐<h4 id="主要工作"><a href="#主要工作" class="headerlink" title="主要工作"></a>主要工作</h4></li>
 <li>800M的 search-click-session 构建listing embedding，作为短期兴趣个性化</li>
 <li>50M的用户预订列表，训练用户type和listing type的embedding，来做长期兴趣个性化<h3 id="related-work"><a href="#related-work" class="headerlink" title="related work"></a>related work</h3><h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h3></li>
-<li>listing embedding<ul>
-<li>公式(负采样代替softmax)<br><img src="https://note.youdao.com/yws/public/resource/0fc79705c78fabbf85f6248b90e33549/xmlnote/CA1967BA35DC404396EE8E7D4468D136/21772"><br>Dp是正例，Dn是随机负例，Vb是预订的listing，Dmn 与正例在同一市场中的负例</li>
+<li><p>listing embedding</p>
+<ul>
+<li><p>公式(负采样代替softmax)<br><img src="https://note.youdao.com/yws/public/resource/0fc79705c78fabbf85f6248b90e33549/xmlnote/CA1967BA35DC404396EE8E7D4468D136/21772"></p>
+<img src="/2019/01/30/embedding在搜索和推荐中的应用-airbnb/embedding_airbnb_loss_function.jpeg" alt="listing embedding loss function" title="listing embedding loss function">
+<p>Dp是正例，Dn是随机负例，Vb是预订的listing，Dmn 与正例在同一市场中的负例</p>
+</li>
 <li>1.选取的是search-click-session，间隔时间大于30min的算两个，停留时长&gt;30s,#click&gt;=2</li>
 <li></li>
 <li>正样本优化：预订的listing作为正样本”常驻”</li>
@@ -21,7 +25,8 @@
 <li>评估：近邻review、聚类review</li>
 </ul>
 </li>
-<li>user_type&amp;listing-type embedding<ul>
+<li><p>user_type&amp;listing-type embedding</p>
+<ul>
 <li>使用用户预订的listing作为序列 </li>
 <li>挑战：序列不够长，共性不稳定<ol>
 <li>预定比点击小得多</li>
@@ -35,10 +40,13 @@
 <li>地域、年龄、性别、</li>
 </ul>
 </li>
-<li>结构图：<br>  <img src="https://note.youdao.com/yws/public/resource/0fc79705c78fabbf85f6248b90e33549/xmlnote/A7AD3C265FD74EAEA499D57AE019C8D7/21808"></li>
+<li><p>结构图：</p>
+  <img src="/2019/01/30/embedding在搜索和推荐中的应用-airbnb/embedding_airbnb_frame.jpeg" alt="lembedding_airbnb_frame" title="lembedding_airbnb_frame"></li>
 <li>user_type和list_type在同一space训练</li>
 <li>房主拒绝的作为负例，使embedding能够包含哪些user_type对哪些listing_type敏感，降低之后为新客推荐的拒绝率</li>
-<li>公式：<br>  <img src="https://note.youdao.com/yws/public/resource/0fc79705c78fabbf85f6248b90e33549/xmlnote/A58EAAB23FAD4F0C9194F80D3F6DD018/21815"><h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><h4 id="如何训练"><a href="#如何训练" class="headerlink" title="如何训练"></a>如何训练</h4><h4 id="如何离线评估"><a href="#如何离线评估" class="headerlink" title="如何离线评估"></a>如何离线评估</h4><h4 id="在相似推荐中如何使用"><a href="#在相似推荐中如何使用" class="headerlink" title="在相似推荐中如何使用"></a>在相似推荐中如何使用</h4><h4 id="在搜索中如何使用"><a href="#在搜索中如何使用" class="headerlink" title="在搜索中如何使用"></a>在搜索中如何使用</h4></li>
+<li><p>公式：</p>
+  <img src="/2019/01/30/embedding在搜索和推荐中的应用-airbnb/embedding_airbnb_user_item_loss_function.jpeg" alt="combine loss function" title="combine loss function">
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><h4 id="如何训练"><a href="#如何训练" class="headerlink" title="如何训练"></a>如何训练</h4><h4 id="如何离线评估"><a href="#如何离线评估" class="headerlink" title="如何离线评估"></a>如何离线评估</h4><h4 id="在相似推荐中如何使用"><a href="#在相似推荐中如何使用" class="headerlink" title="在相似推荐中如何使用"></a>在相似推荐中如何使用</h4><h4 id="在搜索中如何使用"><a href="#在搜索中如何使用" class="headerlink" title="在搜索中如何使用"></a>在搜索中如何使用</h4></li>
 </ul>
 </li>
 <li>搜索模型<x,y> GBDT训练 NDCG评估<ul>
