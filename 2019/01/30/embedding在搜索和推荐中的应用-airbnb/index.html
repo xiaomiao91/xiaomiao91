@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> embedding在搜索和推荐中的应用(airbnb) · Hexo</title><meta name="description" content="embedding在搜索和推荐中的应用(airbnb) - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://weibo.com/u/2266458253" target="_blank" class="nav-list-link">WEIBO</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">embedding在搜索和推荐中的应用(airbnb)</h1><div class="post-info">Jan 30, 2019</div><div class="post-content"><h3 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h3><ul>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> embedding在搜索和推荐中的应用(airbnb) · Hexo</title><meta name="description" content="embedding在搜索和推荐中的应用(airbnb) - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://weibo.com/u/2266458253" target="_blank" class="nav-list-link">WEIBO</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">embedding在搜索和推荐中的应用(airbnb)</h1><div class="post-info">Jan 30, 2019</div><div class="post-content"><h4 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h4><ul>
 <li>大量的搜索历史数据的存储和分析使得搜索结果个性化成为可能</li>
 <li>各平台优化目标不同：<br>1）新闻点击和停留时长<br>2）转化<br>3）买卖双方的收益</li>
 <li>airbnb是为了让买卖双方都满意且成交；具体的：在房客给出地区和日期后，搜索结果中能够出现<strong>合适</strong>的房子</li>
@@ -8,9 +8,13 @@
 <li>负样本限定在同一市场中，增加同一市场内id的区分度</li>
 <li>预定成功的作为global context</li>
 <li>用类型代替ID，解决属性稀疏问题</li>
-<li>Type embedding中 “房东拒绝”作为显式的负样本—&gt;减少将来失败的推荐<h4 id="主要工作"><a href="#主要工作" class="headerlink" title="主要工作"></a>主要工作</h4></li>
+<li>Type embedding中 “房东拒绝”作为显式的负样本—&gt;减少将来失败的推荐</li>
+</ul>
+<h4 id="主要工作"><a href="#主要工作" class="headerlink" title="主要工作"></a>主要工作</h4><ul>
 <li>800M的 search-click-session 构建listing embedding，作为短期兴趣个性化</li>
-<li>50M的用户预订列表，训练用户type和listing type的embedding，来做长期兴趣个性化<h3 id="related-work"><a href="#related-work" class="headerlink" title="related work"></a>related work</h3><h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h3></li>
+<li>50M的用户预订列表，训练用户type和listing type的embedding，来做长期兴趣个性化</li>
+</ul>
+<h4 id="related-work"><a href="#related-work" class="headerlink" title="related work"></a>related work</h4><h4 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h4><ul>
 <li><p>listing embedding</p>
 <ul>
 <li><p>公式(负采样代替softmax)<br><img src="https://note.youdao.com/yws/public/resource/0fc79705c78fabbf85f6248b90e33549/xmlnote/CA1967BA35DC404396EE8E7D4468D136/21772"></p>
@@ -25,6 +29,8 @@
 <li>评估：近邻review、聚类review</li>
 </ul>
 </li>
+</ul>
+<ul>
 <li><p>user_type&amp;listing-type embedding</p>
 <ul>
 <li>使用用户预订的listing作为序列 </li>
@@ -46,14 +52,14 @@
 <li>房主拒绝的作为负例，使embedding能够包含哪些user_type对哪些listing_type敏感，降低之后为新客推荐的拒绝率</li>
 <li><p>公式：</p>
   <img src="/2019/01/30/embedding在搜索和推荐中的应用-airbnb/embedding_airbnb_user_item_loss_function.jpeg" alt="combine loss function" title="combine loss function">
-<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><h4 id="如何训练"><a href="#如何训练" class="headerlink" title="如何训练"></a>如何训练</h4><h4 id="如何离线评估"><a href="#如何离线评估" class="headerlink" title="如何离线评估"></a>如何离线评估</h4><h4 id="在相似推荐中如何使用"><a href="#在相似推荐中如何使用" class="headerlink" title="在相似推荐中如何使用"></a>在相似推荐中如何使用</h4><h4 id="在搜索中如何使用"><a href="#在搜索中如何使用" class="headerlink" title="在搜索中如何使用"></a>在搜索中如何使用</h4></li>
-</ul>
-</li>
+<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><h5 id="如何训练"><a href="#如何训练" class="headerlink" title="如何训练"></a>如何训练</h5><h5 id="如何离线评估"><a href="#如何离线评估" class="headerlink" title="如何离线评估"></a>如何离线评估</h5><h5 id="在相似推荐中如何使用"><a href="#在相似推荐中如何使用" class="headerlink" title="在相似推荐中如何使用"></a>在相似推荐中如何使用</h5><h5 id="在搜索中如何使用"><a href="#在搜索中如何使用" class="headerlink" title="在搜索中如何使用"></a>在搜索中如何使用</h5></li>
 <li>搜索模型<x,y> GBDT训练 NDCG评估<ul>
 <li>x表示特征，包含query、listing、user还有cross</li>
 <li>y是label，包含view、click、book、reject</li>
 </ul>
 </x,y></li>
 <li>embedding计算各种相似度，作为特征</li>
+</ul>
+</li>
 </ul>
 </div></article></div></main><footer><div class="paginator"><a href="/2019/01/26/CNN理解和可视化/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2019 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
