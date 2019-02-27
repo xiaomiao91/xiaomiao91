@@ -1,4 +1,25 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> embedding在电商推荐中的应用(hema) · Hexo</title><meta name="description" content="embedding在电商推荐中的应用(hema) - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://weibo.com/u/2266458253" target="_blank" class="nav-list-link">WEIBO</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">embedding在电商推荐中的应用(hema)</h1><div class="post-info">Jan 20, 2019</div><div class="post-content"><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> embedding在电商推荐中的应用(hema) · Hexo</title><meta name="description" content="embedding在电商推荐中的应用(hema) - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://weibo.com/u/2266458253" target="_blank" class="nav-list-link">WEIBO</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">embedding在电商推荐中的应用(hema)</h1><div class="post-info">Jan 20, 2019</div><div class="post-content"><p><strong>目录</strong></p>
+<ul>
+<li>要解决的问题</li>
+<li>背景</li>
+<li>模型介绍<ul>
+<li>符号说明</li>
+<li>item_id的模型</li>
+<li>属性id的模型</li>
+<li>用户id的学习</li>
+</ul>
+</li>
+<li>应用<ul>
+<li>item相似性推荐</li>
+<li>item冷启动表示</li>
+<li>平台之间用户迁移学习</li>
+</ul>
+</li>
+<li>借鉴与计划</li>
+<li>参考</li>
+</ul>
+<hr>
+<h2 id="要解决的问题"><a href="#要解决的问题" class="headerlink" title="要解决的问题"></a>要解决的问题</h2><ul>
 <li>高维度带来的稀疏问题(sparsity problems due to the high dimension)</li>
 <li>不能反映ID间的关系(cannot reflect the relationships among IDs, either homogeneous or heterogeneous ones)</li>
 </ul>
@@ -86,11 +107,13 @@ cate：分类
 </li>
 <li>两种aggregating manners<ul>
 <li>naive average</li>
-<li>weighted average:含有目标平台中的item的才算<h3 id="学习其他任务"><a href="#学习其他任务" class="headerlink" title="学习其他任务"></a>学习其他任务</h3></li>
+<li>weighted average:含有目标平台中的item的才算</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="学习其他任务"><a href="#学习其他任务" class="headerlink" title="学习其他任务"></a>学习其他任务</h3><ul>
 <li>store_id：sales forecast</li>
 </ul>
 <h2 id="借鉴与计划"><a href="#借鉴与计划" class="headerlink" title="借鉴与计划"></a>借鉴与计划</h2><ol>
