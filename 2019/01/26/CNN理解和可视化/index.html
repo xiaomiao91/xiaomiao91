@@ -16,9 +16,9 @@
 <hr>
 <h3 id="CNN网络结构"><a href="#CNN网络结构" class="headerlink" title="CNN网络结构"></a>CNN网络结构</h3><ul>
 <li>Alexnet  <img src="/2019/01/26/CNN理解和可视化/what_cnn_learn.png" alt="what_cnn_learn.png" title="what_cnn_learn.png">
-<h3 id="可视化方法"><a href="#可视化方法" class="headerlink" title="可视化方法"></a>可视化方法</h3></li>
+</li>
 </ul>
-<h5 id="卷积核可视化"><a href="#卷积核可视化" class="headerlink" title="卷积核可视化"></a>卷积核可视化</h5><ul>
+<h3 id="可视化方法"><a href="#可视化方法" class="headerlink" title="可视化方法"></a>可视化方法</h3><h5 id="卷积核可视化"><a href="#卷积核可视化" class="headerlink" title="卷积核可视化"></a>卷积核可视化</h5><ul>
 <li>  <img src="/2019/01/26/CNN理解和可视化/first_layer.png" alt="first_layer.png" title="first_layer.png"></li>
 <li>做法：将卷积核看做是一个图片，比如3X7X7的卷积核，可以将其看7X7的三通道图片</li>
 <li>解释<ul>
@@ -87,9 +87,11 @@ repeat：
 3、反向传播，获取神经元对于每个像素的梯度
 4、在原图上进行update
 </code></pre><ul>
-<li><p>正则项的功能是使图像更自然，第二篇论文提出四种有效的正则方案。</p>
+<li>正则项的功能是使图像更自然，第二篇论文提出四种有效的正则方案。</li>
+</ul>
 <h2 id="一个可视化工具"><a href="#一个可视化工具" class="headerlink" title="一个可视化工具"></a>一个可视化工具</h2><p>*</p>
-  <img src="/2019/01/26/CNN理解和可视化/cnn_tool.png" alt="cnn_tool.png" title="cnn_tool.png"></li>
+<pre><code>{% asset_img cnn_tool.png cnn_tool.png %}
+</code></pre><ul>
 <li><a href="https://github.com/yosinski/deep-visualization-toolbox" target="_blank" rel="external">https://github.com/yosinski/deep-visualization-toolbox</a></li>
 </ul>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>

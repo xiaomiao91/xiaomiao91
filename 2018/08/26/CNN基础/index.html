@@ -2,7 +2,9 @@
 <li><a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">http://cs231n.github.io/convolutional-networks/</a></li>
 </ul>
 <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
-<li>与常规NN比：减少的了参数的规模，filter是和特定、局部的输入连接<h4 id="主要构成"><a href="#主要构成" class="headerlink" title="主要构成"></a>主要构成</h4></li>
+<li>与常规NN比：减少的了参数的规模，filter是和特定、局部的输入连接</li>
+</ul>
+<h4 id="主要构成"><a href="#主要构成" class="headerlink" title="主要构成"></a>主要构成</h4><ul>
 <li>input layer (W1 <em> H1 </em> D1)</li>
 <li>conv layer<ul>
 <li>主要参数<ul>
@@ -42,12 +44,18 @@
 </li>
 </ul>
 </li>
-<li>fc层：FC层可以和卷积层相互转换<h4 id="卷积网络架构"><a href="#卷积网络架构" class="headerlink" title="卷积网络架构"></a>卷积网络架构</h4><h5 id="常见架构模式"><a href="#常见架构模式" class="headerlink" title="常见架构模式"></a>常见架构模式</h5><ul>
+<li>fc层：FC层可以和卷积层相互转换</li>
+</ul>
+<h4 id="卷积网络架构"><a href="#卷积网络架构" class="headerlink" title="卷积网络架构"></a>卷积网络架构</h4><h5 id="常见架构模式"><a href="#常见架构模式" class="headerlink" title="常见架构模式"></a>常见架构模式</h5><ul>
 <li>INPUT -&gt; [[CONV -&gt; RELU]<em>N -&gt; POOL?]</em>M -&gt; [FC -&gt; RELU]*K -&gt; FC<ul>
 <li>多个小filter VS 一个大filter</li>
 <li>前者由于中间有多个非线性激活函数，所以表达能力更强；且参数数量更小</li>
 <li>实际中的劣势是，训练时需要保存的层数多，占用空间大</li>
-<li>实践：不逞英雄，在现有的ImageNet上finetune(微调)<h5 id="各层参数量级大小选择"><a href="#各层参数量级大小选择" class="headerlink" title="各层参数量级大小选择"></a>各层参数量级大小选择</h5></li>
+<li>实践：不逞英雄，在现有的ImageNet上finetune(微调)</li>
+</ul>
+</li>
+</ul>
+<h5 id="各层参数量级大小选择"><a href="#各层参数量级大小选择" class="headerlink" title="各层参数量级大小选择"></a>各层参数量级大小选择</h5><ul>
 <li>输入层：一般为2的次幂：32、64、224、384、512</li>
 <li>卷积层：小filter</li>
 <li>池化层：field：2*2 stride=2</li>
@@ -55,8 +63,4 @@
 <li>padding的意义在于保持输出的尺寸一致，另外也能防止边缘信息不被“冲洗”，所以也能提升性能</li>
 <li>内存限制妥协：第一层使用大卷积核，可以降低卷积层的输出量</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4></div></article></div></main><footer><div class="paginator"><a href="/2019/01/20/embedding在电商推荐中的应用-hema/" class="prev">PREV</a><a href="/2018/03/26/非监督模型评估/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2019 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+</div></article></div></main><footer><div class="paginator"><a href="/2019/01/20/embedding在电商推荐中的应用-hema/" class="prev">PREV</a><a href="/2018/03/26/非监督模型评估/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2019 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
