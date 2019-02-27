@@ -52,14 +52,12 @@
 <li>房主拒绝的作为负例，使embedding能够包含哪些user_type对哪些listing_type敏感，降低之后为新客推荐的拒绝率</li>
 <li><p>公式：</p>
   <img src="/2019/01/30/embedding在搜索和推荐中的应用-airbnb/embedding_airbnb_user_item_loss_function.jpeg" alt="combine loss function" title="combine loss function">
-<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><h5 id="如何训练"><a href="#如何训练" class="headerlink" title="如何训练"></a>如何训练</h5><h5 id="如何离线评估"><a href="#如何离线评估" class="headerlink" title="如何离线评估"></a>如何离线评估</h5><h5 id="在相似推荐中如何使用"><a href="#在相似推荐中如何使用" class="headerlink" title="在相似推荐中如何使用"></a>在相似推荐中如何使用</h5><h5 id="在搜索中如何使用"><a href="#在搜索中如何使用" class="headerlink" title="在搜索中如何使用"></a>在搜索中如何使用</h5></li>
-<li>搜索模型<x,y> GBDT训练 NDCG评估<ul>
-<li>x表示特征，包含query、listing、user还有cross</li>
-<li>y是label，包含view、click、book、reject</li>
-</ul>
-</x,y></li>
-<li>embedding计算各种相似度，作为特征</li>
+</li>
 </ul>
 </li>
 </ul>
-</div></article></div></main><footer><div class="paginator"><a href="/2019/01/26/CNN理解和可视化/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2019 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><h5 id="如何训练"><a href="#如何训练" class="headerlink" title="如何训练"></a>如何训练</h5><h5 id="如何离线评估"><a href="#如何离线评估" class="headerlink" title="如何离线评估"></a>如何离线评估</h5><h5 id="在相似推荐中如何使用"><a href="#在相似推荐中如何使用" class="headerlink" title="在相似推荐中如何使用"></a>在相似推荐中如何使用</h5><h5 id="在搜索中如何使用"><a href="#在搜索中如何使用" class="headerlink" title="在搜索中如何使用"></a>在搜索中如何使用</h5><pre><code>* 搜索模型&lt;x,y&gt; GBDT训练 NDCG评估
+    * x表示特征，包含query、listing、user还有cross
+    * y是label，包含view、click、book、reject
+* embedding计算各种相似度，作为特征
+</code></pre></div></article></div></main><footer><div class="paginator"><a href="/2019/01/26/CNN理解和可视化/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2019 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
