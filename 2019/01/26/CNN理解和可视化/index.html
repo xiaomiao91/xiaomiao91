@@ -14,11 +14,11 @@
 <li>参考</li>
 </ul>
 <hr>
-<h2 id="CNN网络结构"><a href="#CNN网络结构" class="headerlink" title="CNN网络结构"></a>CNN网络结构</h2><ul>
+<h1 id="CNN网络结构"><a href="#CNN网络结构" class="headerlink" title="CNN网络结构"></a>CNN网络结构</h1><ul>
 <li>Alexnet  <img src="/2019/01/26/CNN理解和可视化/what_cnn_learn.png" alt="what_cnn_learn.png" title="what_cnn_learn.png">
 </li>
 </ul>
-<h2 id="可视化方法"><a href="#可视化方法" class="headerlink" title="可视化方法"></a>可视化方法</h2><h3 id="卷积核可视化"><a href="#卷积核可视化" class="headerlink" title="卷积核可视化"></a>卷积核可视化</h3><ul>
+<h1 id="可视化方法"><a href="#可视化方法" class="headerlink" title="可视化方法"></a>可视化方法</h1><h2 id="卷积核可视化"><a href="#卷积核可视化" class="headerlink" title="卷积核可视化"></a>卷积核可视化</h2><ul>
 <li>  <img src="/2019/01/26/CNN理解和可视化/first_layer.png" alt="first_layer.png" title="first_layer.png"></li>
 <li>做法：将卷积核看做是一个图片，比如3X7X7的卷积核，可以将其看7X7的三通道图片</li>
 <li>解释<ul>
@@ -30,7 +30,7 @@
 </li>
 <li>debug：well-trained networks usually display nice and smooth filters without any noisy patterns.Noisy patterns：训练时间不够，正则不够导致过拟合。[<a href="http://cs231n.github.io/understanding-cnn/" target="_blank" rel="external">图2上下文</a>][<a href="https://note.youdao.com/share/?id=eb4ba80d8cb9fe5d8c9ddbe833d1f3af&amp;type=notebook#/WEBa84c91672bc3205b17075726fd7d3f74" target="_blank" rel="external">论文</a>fig6]</li>
 </ul>
-<h3 id="最后一层-近邻-降维"><a href="#最后一层-近邻-降维" class="headerlink" title="最后一层 近邻/降维"></a>最后一层 近邻/降维</h3><ul>
+<h2 id="最后一层-近邻-降维"><a href="#最后一层-近邻-降维" class="headerlink" title="最后一层 近邻/降维"></a>最后一层 近邻/降维</h2><ul>
 <li>  <img src="/2019/01/26/CNN理解和可视化/classify_visualization.png" alt="classify_visualization.png" title="classify_visualization.png">
 </li>
 </ul>
@@ -38,7 +38,7 @@
 <li>做法：图像-&gt;CNN网络-&gt;最后一层的向量-&gt;降维，将其<a href="https://cs.stanford.edu/people/karpathy/cnnembed/cnn_embed_full_6k.jpg" target="_blank" rel="external">可视化</a></li>
 <li>解释：CNN最后的结果就是其对图片的特征提取，空间上相近就是图片相似(语义内容相似)</li>
 </ul>
-<h3 id="激活点可视化"><a href="#激活点可视化" class="headerlink" title="激活点可视化"></a>激活点可视化</h3><ul>
+<h2 id="激活点可视化"><a href="#激活点可视化" class="headerlink" title="激活点可视化"></a>激活点可视化</h2><ul>
 <li><p>实例</p>
 <ul>
 <li><p>分类任务的网络中有人脸特征的神经元</p>
@@ -53,7 +53,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="激活点反卷积"><a href="#激活点反卷积" class="headerlink" title="激活点反卷积"></a>激活点反卷积</h3><ul>
+<h2 id="激活点反卷积"><a href="#激活点反卷积" class="headerlink" title="激活点反卷积"></a>激活点反卷积</h2><ul>
 <li>  <img src="/2019/01/26/CNN理解和可视化/layer2.png" alt="layer2.png" title="layer2.png">
 </li>
 <li><p>原理：根据激活的值，反向找出它是被哪些图像(或片段)激活的，并且在原图上还原</p>
@@ -69,13 +69,13 @@
 <li><p>底层容易学到，高层到后面才收敛[<a href="https://note.youdao.com/share/?id=eb4ba80d8cb9fe5d8c9ddbe833d1f3af&amp;type=notebook#/WEBa84c91672bc3205b17075726fd7d3f74" target="_blank" rel="external">fig4</a>]</p>
 </li>
 </ul>
-<h3 id="Saliency-Maps"><a href="#Saliency-Maps" class="headerlink" title="Saliency Maps"></a>Saliency Maps</h3><p>*<br>    <img src="/2019/01/26/CNN理解和可视化/ad_pic_important.png" alt="ad_pic_important.png" title="ad_pic_important.png"></p>
+<h2 id="Saliency-Maps"><a href="#Saliency-Maps" class="headerlink" title="Saliency Maps"></a>Saliency Maps</h2><p>*<br>    <img src="/2019/01/26/CNN理解和可视化/ad_pic_important.png" alt="ad_pic_important.png" title="ad_pic_important.png"></p>
 <ul>
 <li>目的：计算一个图片中各像素点对于分类结果的重要性/权重</li>
 <li>原理：像素点加扰动，看神经元或分类如何变化）</li>
 <li>做法：求一阶导数(输出关于各像素点的)</li>
 </ul>
-<h3 id="Class-Model-Visualisation-Gradient-Ascent"><a href="#Class-Model-Visualisation-Gradient-Ascent" class="headerlink" title="Class Model Visualisation/Gradient Ascent"></a>Class Model Visualisation/Gradient Ascent</h3><p>*<br>    <img src="/2019/01/26/CNN理解和可视化/unconv.png" alt="unconv.png" title="unconv.png"></p>
+<h2 id="Class-Model-Visualisation-Gradient-Ascent"><a href="#Class-Model-Visualisation-Gradient-Ascent" class="headerlink" title="Class Model Visualisation/Gradient Ascent"></a>Class Model Visualisation/Gradient Ascent</h2><p>*<br>    <img src="/2019/01/26/CNN理解和可视化/unconv.png" alt="unconv.png" title="unconv.png"></p>
 <ul>
 <li>目的：给定网络和激活点后，生成一张图片，描述该点捕获的特征</li>
 <li>做法：求I<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\arg\max_&#123;I&#125; S_c(I) - \lambda \|I\|_2^2</div></pre></td></tr></table></figure>
@@ -89,12 +89,12 @@ repeat：
 </code></pre><ul>
 <li>正则项的功能是使图像更自然，第二篇论文提出四种有效的正则方案。</li>
 </ul>
-<h2 id="一个可视化工具"><a href="#一个可视化工具" class="headerlink" title="一个可视化工具"></a>一个可视化工具</h2><p>*</p>
+<h1 id="一个可视化工具"><a href="#一个可视化工具" class="headerlink" title="一个可视化工具"></a>一个可视化工具</h1><p>*</p>
 <pre><code>{% asset_img cnn_tool.png cnn_tool.png %}
 </code></pre><ul>
 <li><a href="https://github.com/yosinski/deep-visualization-toolbox" target="_blank" rel="external">https://github.com/yosinski/deep-visualization-toolbox</a></li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li>分享的主要框架参考这个：<a href="http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture13.pdf" target="_blank" rel="external">cs231n ppt关于理解和可视化的ppt</a> </li>
 <li>相关论文<ul>
 <li>Visualizing and Understanding Convolutional Networks</li>
